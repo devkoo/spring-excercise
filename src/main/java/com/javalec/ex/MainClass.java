@@ -1,28 +1,34 @@
 package com.javalec.ex;
 
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
 public class MainClass {
 
 	public static void main(String[] args) {
 		
-		MyCalculator m = new MyCalculator();
+		/*
+		MyCalculator myCalculator = new MyCalculator();
+		myCalculator.setCalculator(new Calculator());
 		
+		myCalculator.setFirstNum(10);
+		myCalculator.setSecondNum(2);
 		
-		System.out.println(m.getFirstNum());
-		System.out.println(m.getSecondNum());
-		System.out.println(m.getCalculator());
+		myCalculator.add();
+		myCalculator.sub();
+		myCalculator.mul();
+		myCalculator.div();
+		*/
 		
-		m.setCalculator(new Calculator());
+		String configLocation = "classpath:applicationCTX.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
+		MyCalculator myCalculator = ctx.getBean("myCalculator", MyCalculator.class);
 		
-		
-		
-		m.setFirstNum(10);
-		m.setSecondNum(2);
-		
-		m.add();
-		m.sub();
-		m.mul();
-		m.div();
+		myCalculator.add();
+		myCalculator.sub();
+		myCalculator.mul();
+		myCalculator.div();
 		
 	}
-
+	
 }
